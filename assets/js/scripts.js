@@ -30,7 +30,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         console.log($scope.userName);
         console.log($scope.repoName);
 
-        $('body').toggleClass('entered');
+        $('body').addClass('entered');
         $('#line').fadeIn('slow', function() {
 
         });
