@@ -42,10 +42,17 @@ table {
   border-spacing: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #34495e;
+}
+
 #hero {
   background-color: #34495e;
   color: #fff;
-  width: 100%;
   padding: 50px;
   text-align: center;
 }
@@ -76,4 +83,8 @@ table {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   cursor: pointer;
+}
+
+#line {
+  display: none;
 }

@@ -29,6 +29,10 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         console.log(url);
         console.log($scope.userName);
         console.log($scope.repoName);
+
+        $('#line').fadeIn('slow', function() {
+
+        });
         // do something
         $scope.sendRequest();
     };
