@@ -28,10 +28,6 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.userName = url[ghIndex+1];
         $scope.repoName = url[ghIndex+2];
 
-        $('body').addClass('entered');
-        $('#line').fadeIn('slow', function() {
-
-        });
 
         // do the y_values with new Date
         // store in some $scope var?
@@ -50,6 +46,11 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
     };
 
     $scope.populateGraph = function() {
+        $('body').addClass('entered');
+        $('#line').fadeIn('slow', function() {
+
+        });
+
         // create points for the scope data
         var numCommits = $scope.commitList.length;
 
