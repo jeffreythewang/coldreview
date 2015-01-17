@@ -34,9 +34,7 @@ module.exports = {
 
         github.repos.getCommits(commit_options, function(err, api_response) {
             if (!err) {
-                return res.view('index', {
-                    commits: api_response
-                });
+                return res.send(api_response);
             }
         });
     },
