@@ -2,7 +2,9 @@
     <div id="hero">
       <h1>Cold Review</h1>
           <input type="text" ng-model="repoUrl" placeholder="GitHub Repo URL">
-          <button ng-click="loadData()" type="button">Go!</button>
+          <button ng-click="githubRequest()" type="button">Go!</button>
+          <button ng-click="updateFaster()" type="button">+</button>
+          <button ng-click="updateSlower()" type="button">-</button>
     </div>
     <div id="commit-feed">
         <ul>
