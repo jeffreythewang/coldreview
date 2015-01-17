@@ -1,6 +1,5 @@
 var date = new Date();
-date.toISOString();
-
+    date.toISOString();
 var last_update = date;
 
 function pull_data(req, res) {

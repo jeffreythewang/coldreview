@@ -5,9 +5,6 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var NestApi = require('nest-api');
-var nestApi = new NestApi('dduan@yahoo.com', '123456');
-
 var unoffNest = require('unofficial-nest-api');
 
 module.exports = {
