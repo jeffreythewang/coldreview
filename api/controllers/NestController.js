@@ -19,8 +19,7 @@ module.exports = {
 		var temp = req.param('temp');
 		unoffNest.login("dduan@yahoo.com", "123456", function (err, data) {
 			if (err) {
-				console.log(err.message);
-				return res.send('error');
+				return res.json(err.message);
 			}
 			unoffNest.fetchStatus(function (data) {
 				for (var deviceId in data.device) {
@@ -31,7 +30,7 @@ module.exports = {
 					}
 				}
 				unoffNest.fetchStatus(function (data) {
-					return res.send(data.device);
+					return res.json(data.device);
 				});
 			});
 		});
@@ -39,11 +38,10 @@ module.exports = {
 	get: function (req, res) {
 		unoffNest.login("dduan@yahoo.com", "123456", function (err, data) {
 			if (err) {
-				console.log(err.message);
-				return res.send('error');
+				return res.json(err.message);
 			}
 			unoffNest.fetchStatus(function (data) {
-				return res.send(data.device);
+				return res.json(data.device);
 			});
 		});
 	}

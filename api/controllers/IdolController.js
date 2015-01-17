@@ -16,10 +16,10 @@ module.exports = {
 			}
 		}).then(
 			function(response){
-				return res.send(response.data);
+				return res.json(response.data);
 			},
 			function(error){
-				return res.send(error);
+				return res.json(error);
 		});
 	}
 };
