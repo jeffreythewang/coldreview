@@ -30,6 +30,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         console.log($scope.userName);
         console.log($scope.repoName);
 
+        $('body').toggleClass('entered');
         $('#line').fadeIn('slow', function() {
 
         });
@@ -74,7 +75,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
               }).error(function() {
                   // do something here
               });
-        }, $scope.updateSpeed);
+        },9999999);
     };
 
     $scope.updateFaster = function () {
