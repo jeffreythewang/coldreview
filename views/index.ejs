@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <ul>
+            <% _.each(commits, function (commit) { %>
+            <li><%= commit.commit.message %></li>
+            <% }) %>
+        </ul>
+    </body>
+</html>
