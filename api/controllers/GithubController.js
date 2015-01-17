@@ -21,33 +21,23 @@ var github = new GitHubApi({
 });
 
 module.exports = {
-    getCommits: function(req, res, commit_parameters) {
-        var commit_options = commit_parameters;
+    getCommits: function(req, res) {
+        var commit_options = {
+            user: req.param('user') || "jeffreythewang",
+            repo: req.param('repo') || "superprod",
+        };
 
-        if (commit_parameters.since) {
+        if (req.param('since')) {
             commit_options.since = since;
         }
 
-        if (commit_parameters.until) {
+        if (req.param('until')) {
             commit_options.until = until;
         }
 
         github.repos.getCommits(commit_options, function(err, api_response) {
             if (!err) {
-                return res.send(api_response);
-            }
-        });
-    },
-
-    getCommit: function(req, res) {
-        github.gitdata.getCommit({
-            user: "jeffreythewang",
-            repo: "superprod",
-            sha: req.params.sha || "",
-        }, function(err, api_response) {
-            if (!err) {
-                console.log(api_response);
-                return res.send("commit data");
+                return res.json(api_response);
             }
         });
     }

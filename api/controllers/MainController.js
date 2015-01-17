@@ -8,13 +8,6 @@ var GithubController = require("./GithubController.js");
  */
 
 module.exports = {
-    send: function(req, res) {
-        var commit_options ={
-            user: req.params.user || "jeffreythewang",
-            repo: req.params.repo || "superprod",
-        };
 
-        GithubController.getCommits(req, res, commit_options);
-    }
 };
 
