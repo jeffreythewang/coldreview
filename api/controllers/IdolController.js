@@ -8,7 +8,7 @@ var Idol = require('idol-client')('1f64dca9-5641-44e7-9782-eb0f1e2cd3d6');
 
 module.exports = {
 	get: function (req, res) {
-		var input = req.param('text') + "";
+		var input = req.param('text');
 
 		Idol.analyzeSentiment({
 			parameters: {
