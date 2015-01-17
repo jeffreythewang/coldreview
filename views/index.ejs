@@ -1,9 +1,11 @@
-<div id="hero">
-  <h1>Cold Review</h1>
-  <input type="text" placeholder="GitHub Repo URL">
-  <button type="button">Go!</button>
-</div>
-<div id="line-chart" ng-controller="LineCtrl">
-  <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick">
-  </canvas>
+<div ng-controller="LineCtrl">
+    <div id="hero">
+      <h1>Cold Review</h1>
+          <input type="text" ng-model="repoUrl" placeholder="GitHub Repo URL">
+          <button ng-click="loadData()" type="button">Go!</button>
+    </div>
+    <div id="line-chart">
+      <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick">
+      </canvas>
+    </div>
 </div>
