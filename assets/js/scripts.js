@@ -25,6 +25,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         var ghIndex = url.indexOf('github.com');
         $scope.userName = url[ghIndex+1];
         $scope.repoName = url[ghIndex+2];
+        console.log('initial load');
         console.log(url);
         console.log($scope.userName);
         console.log($scope.repoName);
@@ -36,15 +37,21 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         // do http requests in angular
         // update after 3 seconds (via http request)
         // need to loop this
+        // graphs commit volume over time
+        // spits out commit message to a feed
+        // idol parses commit messages
+        // change nest temperature
         $interval(function() {
-              $http.get('github/getCommits', {
-                  param: {
-                      user: $scope.userName,
-                      repo: $scope.repoName
-                  }
+            console.log('refresher');
+            console.log($scope.userName);
+            console.log($scope.repoName);
+              $http.get('github/getCommits?user=' + $scope.userName
+                      + '&repo=' + $scope.repoName, {
               }).success(function(data) {
                   // create points for the scope data
 
+                  $scope.commitList = data;
+                  console.log($scope.commitList);
                   var numCommits = data.length;
 
                   console.log($scope.data);
@@ -71,6 +78,6 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
     }
 
     $scope.updateSlower = function () {
-        if ($scope.updateSpeed <= 30 * 1000) { $scope.updateSpeed += 1000; }
+        if ($scope.updateSpeed < 30 * 1000) { $scope.updateSpeed += 1000; }
     }
 }]);

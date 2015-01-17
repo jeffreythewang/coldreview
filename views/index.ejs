@@ -6,6 +6,13 @@
           <button ng-click="updateFaster()" type="button">+</button>
           <button ng-click="updateSlower()" type="button">-</button>
     </div>
+    <div id="commit-feed">
+        <ul>
+            <li ng-repeat="commit in commitList | limitTo: 10">
+                {{ commit.commit.committer.name }} : {{ commit.commit.message }}
+            </li>
+        </ul>
+    </div>
     <div id="line-chart">
       <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick">
       </canvas>
