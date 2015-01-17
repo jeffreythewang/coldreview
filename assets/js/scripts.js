@@ -16,7 +16,8 @@ angular.module("app", ["chart.js"]).controller("LineCtrl", function($scope, $htt
   };
 
   // do http requests in angular
-  // update every 3 seconds (via http request)
+  // update after 3 seconds (via http request)
+  // need to loop this
   setTimeout(function() {
       $scope.$apply(function() {
           $http.get('github/getCommits', {
