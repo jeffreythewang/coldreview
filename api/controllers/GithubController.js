@@ -21,18 +21,15 @@ var github = new GitHubApi({
 });
 
 module.exports = {
-    getCommits: function(req, res) {
-        var commit_options = {
-            user: "jeffreythewang",
-            repo: "superprod",
-        };
+    getCommits: function(req, res, commit_parameters) {
+        var commit_options = commit_parameters;
 
-        if (req.params.since) {
-            commit_options.since = req.params.since;
+        if (commit_parameters.since) {
+            commit_options.since = since;
         }
 
-        if (req.params.until) {
-            commit_options.until = req.params.until;
+        if (commit_parameters.until) {
+            commit_options.until = until;
         }
 
         github.repos.getCommits(commit_options, function(err, api_response) {
