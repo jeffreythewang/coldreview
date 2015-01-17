@@ -19,7 +19,7 @@ module.exports = {
 
 	},
 	set: function (req, res) {
-		var temp = req.params.temp;
+		var temp = req.param('temp');
 		unoffNest.login("dduan@yahoo.com", "123456", function (err, data) {
 			if (err) {
 				console.log(err.message);
