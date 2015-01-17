@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-        <h1>Angularz</h1>
-        <button type="button">Collect commit data!</button>
-    </body>
-</html>
+<h1>Angularz</h1>
+<button type="button">Collect commit data!</button>
+<div id="line-chart" ng-controller="LineCtrl">
+  <canvas id="line" class="chart chart-line" data="data" labels="labels" legend="true" series="series" click="onClick">
+  </canvas>
+</div>
