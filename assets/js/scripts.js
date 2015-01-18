@@ -118,6 +118,11 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         console.log('temp delta: ' + $scope.temperatureDelta);
         $scope.set_temp = $scope.set_temp + $scope.temperatureDelta;
         $scope.set_temp = Math.max(Math.min($scope.set_temp, $scope.overall_max_temp), $scope.overall_min_temp);
+        $http.get('nest/set?temp=' + $scope.set_temp).success(function(data) {
+          // do something
+        }).error(function() {
+          // do something here
+        });
         var x_values_temperatures = $scope.temperatureValues[0];
         x_values_temperatures.shift();
         x_values_temperatures.push($scope.set_temp);
