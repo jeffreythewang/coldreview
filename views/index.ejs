@@ -17,9 +17,9 @@
           <ul>
               <li ng-repeat="commit in commitList | limitTo: 10">
                   {{ commit.commit.committer.name }}: {{ commit.commit.message }}
-                  <i class="fa fa-caret-up" ng-if="commit.idol.sentiment=='positive'"> {{ commit.idol.score }}</i>
-                  <i class="fa fa-caret-down" ng-if="commit.idol.sentiment=='negative'"> {{ commit.idol.score }}</i>
-                  <i class="fa fa-minus-circle" ng-if="commit.idol.sentiment=='neutral'"> {{ commit.idol.score }}</i>
+                  <i class="fa fa-caret-up" ng-if="commit.idol.sentiment=='positive'"> {{ commit.idol.score | number:2 }}</i>
+                  <i class="fa fa-caret-down" ng-if="commit.idol.sentiment=='negative'"> {{ commit.idol.score | number:2 }}</i>
+                  <i class="fa fa-minus-circle" ng-if="commit.idol.sentiment=='neutral'"> {{ commit.idol.score | number:2 }}</i>
               </li>
           </ul>
       </div>
