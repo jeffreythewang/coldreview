@@ -1,3 +1,5 @@
-# gitfreeze
+# Cold Review
 
-a [Sails](http://sailsjs.org) application
+### The ultimate productivity tool for managers
+
+PennApps 15W
