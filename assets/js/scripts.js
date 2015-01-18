@@ -129,7 +129,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         var commitAvg = commitSum / $scope.commitVolumes[0].length;
         console.log('sum' + commitSum);
         console.log('length' + $scope.commitVolumes[0]);
-        var commitVolumeValue = Math.max(commitAvg, 1);
+        var commitVolumeValue = Math.min(commitAvg, 1);
         return (($scope.commitList[0].idol.score * 0.7) + (commitVolumeValue * 0.3)) * 5;
     }
 
