@@ -99,7 +99,7 @@ h4 {
   cursor: pointer;
 }
 
-#line, #commit-feed, #temp-settings {
+#line-commits, #line-temperatures, #commit-feed, #temp-settings {
   display: none;
 }
 

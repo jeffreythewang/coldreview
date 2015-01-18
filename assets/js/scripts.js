@@ -3,8 +3,14 @@ var app = angular.module("app", ["chart.js"]);
 app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     function init() {
         $scope.labels = ["-3m", "-2.5m", "-2m", "-1.5m", "-1m", "-30s", "now"];
+
         $scope.commitVolumes = [
             [65, 59, 80, 81, 56, 55, 40]
+        ];
+
+        $scope.temperatureValues = [
+            [65, 59, 80, 81, 56, 55, 40], //calculated
+            [28, 48, 40, 19, 86, 27, 90] //actual (estimated)
         ];
 
         $scope.onClick = function(points, evt) {
@@ -81,7 +87,11 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
     $scope.populateGraph = function() {
         $('body').addClass('entered');
-        $('#line').fadeIn('slow', function() {
+        $('#line-commits').fadeIn('slow', function() {
+          $('#temp-settings').fadeIn('slow', function() {
+          });
+        });
+        $('#line-temperatures').fadeIn('slow', function() {
           $('#temp-settings').fadeIn('slow', function() {
           });
         });
