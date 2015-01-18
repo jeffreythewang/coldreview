@@ -1,17 +1,8 @@
 <div ng-controller="LineCtrl">
     <div id="hero">
       <h1>Cold Review</h1>
-          <input type="text" ng-model="repoUrl" placeholder="GitHub Repo URL">
-          <button ng-click="githubRequest()" type="button">Go!</button>
-          <button ng-click="updateFaster()" type="button">+</button>
-          <button ng-click="updateSlower()" type="button">-</button>
-    </div>
-    <div id="commit-feed">
-        <ul>
-            <li ng-repeat="commit in commitList | limitTo: 10">
-                {{ commit.commit.committer.name }} : {{ commit.commit.message }} : {{ commit.idol.sentiment }}
-            </li>
-        </ul>
+      <input type="text" ng-model="repoUrl" placeholder="GitHub Repo URL">
+      <button ng-click="githubRequest()" type="button">Go!</button>
     </div>
     <div id="line-chart">
       <canvas id="line" class="chart chart-line" data="data" labels="labels"  series="series" click="onClick" height="50">
@@ -19,4 +10,17 @@
       <button ng-click="updateFaster()" type="button">+</button>
       <button ng-click="updateSlower()" type="button">-</button>
     </div>
+    <div id="commit-feed">
+      <h4>Most Recent Commits</h4>
+          <ul>
+              <li ng-repeat="commit in commitList | limitTo: 10">
+                  {{ commit.commit.committer.name }} : {{ commit.commit.message }} : {{ commit.idol.sentiment }}
+              </li>
+          </ul>
+      </div>
+    <div id="temp-settings">
+      <h4>Temperature Settings</h4>
+
+    </div>
+
 </div>

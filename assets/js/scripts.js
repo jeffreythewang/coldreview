@@ -2,7 +2,7 @@ var app = angular.module("app", ["chart.js"]);
 
 app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     function init() {
-        $scope.labels = ["a", "b", "c", "d", "e", "f", "g"];
+        $scope.labels = ["-3m", "-2.5m", "-2m", "-1.5m", "-1m", "-30s", "now"];
         $scope.data = [
             [65, 59, 80, 81, 56, 55, 40],
             [28, 48, 40, 19, 86, 27, 90]
@@ -67,6 +67,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
       function sentimentsAnalyzed(data) {
         $scope.commitList = data;
+        $('#commit-feed').fadeIn('slow', function() {});
       }
 
       // for(var i in commits) {
@@ -78,7 +79,8 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
     $scope.populateGraph = function() {
         $('body').addClass('entered');
         $('#line').fadeIn('slow', function() {
-
+          $('#temp-settings').fadeIn('slow', function() {
+          });
         });
 
         // create points for the scope data
