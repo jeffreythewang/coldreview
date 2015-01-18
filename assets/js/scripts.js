@@ -36,7 +36,8 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         //$interval(function() { // maybe add this in later
             $http.get('github/getCommits?user=' + $scope.userName
                   + '&repo=' + $scope.repoName).success(function(data) {
-                $scope.commitList = data;
+                // $scope.commitList = data;
+                $scope.analyzeCommit(data);
             }).error(function() {
               // do something here
             });
@@ -44,6 +45,33 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
         $scope.populateGraph();
     };
+
+    $scope.analyzeCommit = function(commits) {
+      var numCommitsAnalyzed = 0;
+
+      function analyzeCommit(commit, length, cb) {
+        text = commit.commit.message;
+        $http.get('idol/get?text=' + text).success(function(data){
+          // commit.idol = data.data.sentiment;
+          commit.idol = data.aggregate;
+          numCommitsAnalyzed++;
+          if (numCommitsAnalyzed === length) {
+            cb(commits);
+            console.log(commits);
+          }
+        });
+      }
+
+      function sentimentsAnalyzed(data) {
+        $scope.commitList = data;
+      }
+
+      // for(var i in commits) {
+      for (var i = 0; i < commits.length; i++) {
+        analyzeCommit(commits[i], commits.length, sentimentsAnalyzed);
+      }
+    }
+
 
     $scope.populateGraph = function() {
         $('body').addClass('entered');

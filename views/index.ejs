@@ -9,7 +9,7 @@
     <div id="commit-feed">
         <ul>
             <li ng-repeat="commit in commitList | limitTo: 10">
-                {{ commit.commit.committer.name }} : {{ commit.commit.message }}
+                {{ commit.commit.committer.name }} : {{ commit.commit.message }} : {{ commit.idol.sentiment }}
             </li>
         </ul>
     </div>
