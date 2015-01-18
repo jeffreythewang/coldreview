@@ -28,11 +28,11 @@ module.exports = {
         };
 
         if (req.param('since')) {
-            commit_options.since = since;
+            commit_options.since = req.param('since');
         }
 
         if (req.param('until')) {
-            commit_options.until = until;
+            commit_options.until = req.param('until');
         }
 
         github.repos.getCommits(commit_options, function(err, api_response) {

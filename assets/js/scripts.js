@@ -1,7 +1,3 @@
-var date = new Date();
-    date.toISOString();
-var last_update = date;
-
 var app = angular.module("app", ["chart.js"]);
 
 app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
@@ -20,6 +16,11 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.updateSpeed = 30 * 1000;
         $scope.commitMessages = [];
         $scope.commitList = [];
+
+        // date calculations
+        $scope.sinceTime = '2000-01-15T23:54:11Z';
+        $scope.untilTime = new Date();
+        $scope.untilTime = $scope.untilTime.toISOString();
     }
 
     $scope.githubRequest = function() {
@@ -28,16 +29,18 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.userName = url[ghIndex+1];
         $scope.repoName = url[ghIndex+2];
 
-
-        // do the y_values with new Date
-        // store in some $scope var?
-
+        // calcaultes times, send http request
         // update after 3 seconds (via http request)
         //$interval(function() { // maybe add this in later
+            $scope.untilTime = new Date();
+            $scope.untilTime = $scope.untilTime.toISOString();
             $http.get('github/getCommits?user=' + $scope.userName
-                  + '&repo=' + $scope.repoName).success(function(data) {
-                // $scope.commitList = data;
+                  + '&repo=' + $scope.repoName
+                  + '&since=' + $scope.sinceTime
+                  + '&until=' + $scope.untilTime).success(function(data) {
                 $scope.analyzeCommit(data);
+                $scope.sinceTime = new Date();
+                $scope.sinceTime = $scope.sinceTime.toISOString();
             }).error(function() {
               // do something here
             });
@@ -71,7 +74,6 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         analyzeCommit(commits[i], commits.length, sentimentsAnalyzed);
       }
     }
-
 
     $scope.populateGraph = function() {
         $('body').addClass('entered');
