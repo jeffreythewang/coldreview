@@ -5,7 +5,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.labels = ["-3m", "-2.5m", "-2m", "-1.5m", "-1m", "-30s", "now"];
 
         $scope.commitVolumes = [
-            [65, 59, 80, 81, 56, 55, 40]
+            [2, 3, 2, 5, 4, 2, 3]
         ];
 
         $scope.temperatureValues = [
@@ -27,9 +27,12 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.untilTime = new Date();
         $scope.untilTime = $scope.untilTime.toISOString();
 
+        $scope.overall_max_temp = 90;
+        $scope.overall_min_temp = 50;
         $scope.set_temp = 75;
         $scope.max_temp = 78;
         $scope.ambient_temp = 75;
+        $scope.temperatureDelta = 0;
     }
 
     $scope.githubRequest = function() {
@@ -54,8 +57,6 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
               // do something here
             });
         //}, $scope.updateSpeed);
-
-        $scope.populateGraph();
     };
 
     $scope.analyzeCommit = function(commits) {
@@ -76,6 +77,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
       function sentimentsAnalyzed(data) {
         $scope.commitList = data;
+        $scope.populateGraph();
         $('#commit-feed').fadeIn('slow', function() {});
       }
 
@@ -85,6 +87,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
       }
     }
 
+    // handles points in the graph and calculates temperature values
     $scope.populateGraph = function() {
         $('body').addClass('entered');
         $('#line-commits').fadeIn('slow', function() {
@@ -98,11 +101,29 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
         // create points for the scope data
         var numCommits = $scope.commitList.length;
+        var x_values_commits = $scope.commitVolumes[0];
+        x_values_commits.shift();
+        x_values_commits.push(numCommits);
 
-        var x_values = $scope.commitVolumes[0];
-        x_values.shift();
-        x_values.push(numCommits);
+        $scope.temperatureDelta = jwuAlgorithm();
+        $scope.set_temp = $scope.set_temp + $scope.temperatureDelta;
+        var x_values_temperatures = $scope.temperatureValues[0];
+        x_values_temperatures.shift();
+        x_values_temperatures.push($scope.set_temp);
     };
+
+    // jwu algorithm for temperate deltas
+    function jwuAlgorithm() {
+        var commitSum = $scope.commitVolumes[0].reduce(function (x, y) { return x + y });
+        var commitAvg = commitSum / $scope.commitVolumes[0].length;
+        console.log('sum' + commitSum);
+        console.log('length' + $scope.commitVolumes[0]);
+        var commitVolumeValue = Math.max(commitAvg, 1);
+        return Math.max(Math.min(($scope.commitList[0].idol.score * 0.7
+                                  + commitVolumeValue * 0.3) * 5,
+                                  $scope.overall_max_temp),
+                                  $scope.overall_min_temp);
+    }
 
     // TODOs:
     // graphs commit volume over time
