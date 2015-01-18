@@ -13,6 +13,10 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
             [28, 48, 40, 19, 86, 27, 90] //actual (estimated)
         ];
 
+        $scope.commitSeries = ['Commits'];
+
+        $scope.tempSeries = ['Calculated Temperature', 'Actual Temperature'];
+
         $scope.onClick = function(points, evt) {
             console.log(points, evt);
         };
@@ -90,6 +94,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
     // handles points in the graph and calculates temperature values
     $scope.populateGraph = function() {
         $('body').addClass('entered');
+        $('html').addClass('entered');
         $('#line-commits').fadeIn('slow', function() {
           $('#temp-settings').fadeIn('slow', function() {
           });
@@ -98,6 +103,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
           $('#temp-settings').fadeIn('slow', function() {
           });
         });
+        $('.line-legend').fadeIn('slow', function() {});
 
         // create points for the scope data
         var numCommits = $scope.commitList.length;

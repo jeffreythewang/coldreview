@@ -111,7 +111,7 @@ h4 {
   color: red;
 }
 
-#line-commits, #line-temperatures, #commit-feed, #temp-settings {
+#line-commits, #line-temperatures, #commit-feed, #temp-settings, .line-legend {
   display: none;
 }
 
@@ -122,6 +122,14 @@ h4 {
 
 #commit-feed {
   float: left;
+}
+
+#commit-feed li {
+  margin-bottom: 5px;
+}
+
+.sentiment {
+  float: right;
 }
 
 #temp-settings {

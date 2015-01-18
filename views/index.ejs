@@ -5,9 +5,9 @@
       <button ng-click="githubRequest()" type="button">Go!</button>
     </div>
     <div id="line-chart">
-      <canvas id="line-commits" class="chart chart-line" data="commitVolumes" labels="labels"  series="series" click="onClick" height="50">
+      <canvas id="line-commits" class="chart chart-line" data="commitVolumes" labels="labels"  series="commitSeries" legend="legend" click="onClick" height="40">
       </canvas>
-      <canvas id="line-temperatures" class="chart chart-line" data="temperatureValues" labels="labels"  series="series" click="onClick" height="50">
+      <canvas id="line-temperatures" class="chart chart-line" data="temperatureValues" labels="labels"  series="tempSeries" legend="legend" click="onClick" height="40">
       </canvas>
       <button ng-click="updateFaster()" type="button">+</button>
       <button ng-click="updateSlower()" type="button">-</button>
@@ -16,10 +16,14 @@
       <h4>Most Recent Commits</h4>
           <ul>
               <li ng-repeat="commit in commitList | limitTo: 10">
-                  {{ commit.commit.committer.name }}: {{ commit.commit.message }}
+                  {{ commit.commit.committer.name }}:
+                  {{ commit.commit.message }}
+
+                  <span class="sentiment">
                   <i class="fa fa-caret-up" ng-if="commit.idol.sentiment=='positive'"> {{ commit.idol.score | number:2 }}</i>
                   <i class="fa fa-caret-down" ng-if="commit.idol.sentiment=='negative'"> {{ commit.idol.score | number:2 }}</i>
                   <i class="fa fa-minus-circle" ng-if="commit.idol.sentiment=='neutral'"> {{ commit.idol.score | number:2 }}</i>
+                </span>
               </li>
           </ul>
       </div>
