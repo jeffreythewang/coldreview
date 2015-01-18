@@ -31,13 +31,13 @@
       <h4>Temperature Settings</h4>
       <div id="container">
         <div class="temp-display">
-          <h1>{{ set_temp }}&deg;</h1>
+          <h1>{{ set_temp | number:1 }}&deg;</h1>
           Current
         </div><div class="temp-display">
-          <h1>{{ ambient_temp}}&deg;</h1>
+          <h1>{{ ambient_temp | number: 1 }}&deg;</h1>
           Ambient
         </div><div class="temp-display">
-          <h1>{{ max_temp }}&deg;</h1>
+          <h1>{{ max_temp | number: 1 }}&deg;</h1>
           Max
         </div>
       </div>
