@@ -16,7 +16,10 @@
       <h4>Most Recent Commits</h4>
           <ul>
               <li ng-repeat="commit in commitList | limitTo: 10">
-                  {{ commit.commit.committer.name }} : {{ commit.commit.message }} : {{ commit.idol.sentiment }}
+                  {{ commit.commit.committer.name }}: {{ commit.commit.message }}
+                  <i class="fa fa-caret-up" ng-if="commit.idol.sentiment=='positive'"> 0.52</i>
+                  <i class="fa fa-caret-down" ng-if="commit.idol.sentiment=='negative'"> -0.82</i>
+                  <i class="fa fa-minus-circle" ng-if="commit.idol.sentiment=='neutral'"> -0.1</i>
               </li>
           </ul>
       </div>

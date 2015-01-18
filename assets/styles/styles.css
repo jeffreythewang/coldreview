@@ -99,6 +99,18 @@ h4 {
   cursor: pointer;
 }
 
+.fa-minus-circle {
+  color: grey;
+}
+
+.fa-caret-up {
+  color: green;
+}
+
+.fa-caret-down {
+  color: red;
+}
+
 #line-commits, #line-temperatures, #commit-feed, #temp-settings {
   display: none;
 }
