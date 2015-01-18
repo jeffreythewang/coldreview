@@ -3,9 +3,8 @@ var app = angular.module("app", ["chart.js"]);
 app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $http, $interval) {
     function init() {
         $scope.labels = ["-3m", "-2.5m", "-2m", "-1.5m", "-1m", "-30s", "now"];
-        $scope.data = [
-            [65, 59, 80, 81, 56, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90]
+        $scope.commitVolumes = [
+            [65, 59, 80, 81, 56, 55, 40]
         ];
 
         $scope.onClick = function(points, evt) {
@@ -90,7 +89,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         // create points for the scope data
         var numCommits = $scope.commitList.length;
 
-        var x_values = $scope.data[1];
+        var x_values = $scope.commitVolumes[0];
         x_values.shift();
         x_values.push(numCommits);
     };
