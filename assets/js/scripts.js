@@ -21,6 +21,10 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.sinceTime = '2000-01-15T23:54:11Z';
         $scope.untilTime = new Date();
         $scope.untilTime = $scope.untilTime.toISOString();
+
+        $scope.set_temp = 75;
+        $scope.max_temp = 78;
+        $scope.ambient_temp = 75;
     }
 
     $scope.githubRequest = function() {
