@@ -15,7 +15,7 @@
     <div id="commit-feed">
       <h4>Most Recent Commits</h4>
           <ul>
-              <li ng-repeat="commit in commitList | limitTo: 10">
+              <li ng-repeat="commit in cumulativeCommitList | limitTo: 10">
                   {{ commit.commit.committer.name }}:
                   {{ commit.commit.message }}
 

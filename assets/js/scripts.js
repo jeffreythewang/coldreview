@@ -25,6 +25,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.updateSpeed = 30 * 1000;
         $scope.commitMessages = [];
         $scope.commitList = [];
+        $scope.cumulativeCommitList = [];
 
         // date calculations
         $scope.sinceTime = '2000-01-15T23:54:11Z';
@@ -81,7 +82,8 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
       function sentimentsAnalyzed(data) {
         // $scope.commitList = $scope.commitList.concat(data);
-        $scope.commitList = data.concat($scope.commitList);
+        $scope.cumulativeCommitList = data.concat($scope.commitList);
+        $scope.commitList = data;
         $scope.populateGraph();
         $('#commit-feed').fadeIn('slow', function() {});
       }
@@ -113,6 +115,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         x_values_commits.push(numCommits);
 
         $scope.temperatureDelta = jwuAlgorithm();
+        console.log('temp delta: ' + $scope.temperatureDelta);
         $scope.set_temp = $scope.set_temp + $scope.temperatureDelta;
         var x_values_temperatures = $scope.temperatureValues[0];
         x_values_temperatures.shift();
