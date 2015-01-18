@@ -34,7 +34,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
 
         $scope.overall_max_temp = 90;
         $scope.overall_min_temp = 50;
-        $scope.set_temp = 75;
+        $scope.set_temp = 65;
         $scope.max_temp = 78;
         $scope.ambient_temp = 75;
         $scope.temperatureDelta = 0;
