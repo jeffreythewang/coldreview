@@ -80,7 +80,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
       }
 
       function sentimentsAnalyzed(data) {
-        $scope.commitList = data;
+        $scope.commitList = $scope.commitList.concat(data);
         $scope.populateGraph();
         $('#commit-feed').fadeIn('slow', function() {});
       }
