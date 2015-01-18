@@ -115,3 +115,25 @@ h4 {
 #temp-settings {
   float: right;
 }
+
+#container {
+  width: 100%;
+  text-align: justify;
+}
+
+.temp-display {
+  width: 30%;
+  text-align: center;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.temp-display h1 {
+  font-size: 60px;
+}
+
+#container::after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+}
