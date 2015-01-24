@@ -38,6 +38,8 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         $scope.max_temp = 78;
         $scope.ambient_temp = 75;
         $scope.temperatureDelta = 0;
+        $scope.deathTimer = undefined;
+        $scope.deathTimerSpeed = 5000;
     }
 
     $scope.githubRequest = function() {
@@ -127,6 +129,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
         var x_values_temperatures = $scope.temperatureValues[0];
         x_values_temperatures.shift();
         x_values_temperatures.push($scope.set_temp);
+        toggleDeathTimer();
     };
 
     // jwu algorithm for temperate deltas
@@ -144,6 +147,19 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
     // spits out commit message to a feed
     // idol parses commit messages
     // change nest temperature
+
+    function toggleDeathTimer() {
+        if (angular.isDefined($scope.deathTimer)) {
+            $interval.cancel($scope.deathTimer);
+            $scope.deathTimer = undefined;
+        }
+
+        $scope.deathTimer = $interval(function() {
+            if ($scope.set_temp > 50) {
+                $scope.set_temp -= 0.1
+            }
+        }, $scope.deathTimerSpeed);
+    }
 
     $scope.updateFaster = function () {
         if ($scope.updateSpeed > 5 * 1000) { $scope.updateSpeed -= 1000; }
