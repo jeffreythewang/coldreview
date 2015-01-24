@@ -107,6 +107,7 @@ app.controller("LineCtrl", ['$scope', '$http', '$interval', function($scope, $ht
           });
         });
         $('.line-legend').fadeIn('slow', function() {});
+        $('.update-rate-button').fadeIn('slow', function() {});
 
         // create points for the scope data
         var numCommits = $scope.commitList.length;

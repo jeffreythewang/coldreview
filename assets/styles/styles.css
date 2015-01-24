@@ -115,7 +115,7 @@ h4 {
   color: red;
 }
 
-#line-commits, #line-temperatures, #commit-feed, #temp-settings, .line-legend {
+#line-commits, #line-temperatures, #commit-feed, #temp-settings, .line-legend, .update-rate-button {
   display: none;
 }
 
